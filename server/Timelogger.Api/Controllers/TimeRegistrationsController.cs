@@ -9,14 +9,14 @@ namespace Timelogger.Api
   [Produces("application/json")]
   public class TimeRegistrationsController : ControllerBase
   {
-    private readonly ITimeRegistrationSaver timeRegistrationSaver;
+    private readonly ITimeRegistrationSaveBusinessService timeRegistrationSaveBusinessService;
     private readonly ITimeRegistrationsByProjectLoader timeRegistrationsByProjectLoader;
 
     public TimeRegistrationsController(
-      ITimeRegistrationSaver timeRegistrationSaver,
+      ITimeRegistrationSaveBusinessService timeRegistrationSaveBusinessService,
       ITimeRegistrationsByProjectLoader timeRegistrationsByProjectLoader)
     {
-      this.timeRegistrationSaver = timeRegistrationSaver;
+      this.timeRegistrationSaveBusinessService = timeRegistrationSaveBusinessService;
       this.timeRegistrationsByProjectLoader = timeRegistrationsByProjectLoader;
     }
 
@@ -27,7 +27,7 @@ namespace Timelogger.Api
       [FromRoute] int projectId,
       [FromBody] TimeRegistrationModel timeRegistrationModel)
     {
-      if (timeRegistrationSaver.Save(projectId, timeRegistrationModel))
+      if (timeRegistrationSaveBusinessService.Execute(projectId, timeRegistrationModel))
       {
         return NoContent();
       }

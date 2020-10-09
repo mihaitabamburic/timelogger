@@ -12,14 +12,7 @@ namespace Timelogger.Api
       this.context = context;
     }
 
-    public bool Save(int projectId, TimeRegistrationModel timeRegistrationModel)
-    {
-      var project = context.Projects.Find(projectId);
-
-      return project != null && Save(timeRegistrationModel, project);
-    }
-
-    private bool Save(TimeRegistrationModel timeRegistrationModel, Project project)
+    public void Save(Project project, TimeRegistrationModel timeRegistrationModel)
     {
       var timeRegistration = new TimeRegistration
       {
@@ -29,9 +22,7 @@ namespace Timelogger.Api
       };
 
       context.TimeRegistrations.Add(timeRegistration);
-
       context.SaveChanges();
-      return true;
     }
   }
 }

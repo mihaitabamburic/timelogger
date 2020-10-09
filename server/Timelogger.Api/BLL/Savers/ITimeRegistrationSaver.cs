@@ -1,7 +1,9 @@
+using Timelogger.Entities;
+
 namespace Timelogger.Api
 {
   public interface ITimeRegistrationSaver
   {
-    bool Save(int projectId, TimeRegistrationModel timeRegistrationModel);
+    void Save(Project project, TimeRegistrationModel timeRegistrationModel);
   }
 }
