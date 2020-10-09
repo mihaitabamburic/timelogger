@@ -30,10 +30,10 @@ namespace Timelogger.Api.Tests
     {
       var project = new Project
       {
-        Deadline = DateTime.UtcNow
+        Deadline = new DateTime(2020, 1, 2)
       };
       _loader.Setup(mock => mock.Load(1)).Returns(project);
-      _dateTimeService.Setup(mock => mock.GetUtcNow()).Returns(DateTime.UtcNow.AddDays(-1));
+      _dateTimeService.Setup(mock => mock.GetUtcNow()).Returns(new DateTime(2020, 1, 1));
       var timeRegistration = new TimeRegistrationModel();
 
       var result = _service.Execute(1, timeRegistration);
@@ -63,10 +63,10 @@ namespace Timelogger.Api.Tests
     {
       Project project = new Project
       {
-        Deadline = DateTime.UtcNow.AddDays(-1)
+        Deadline = new DateTime(2020, 1, 1)
       };
       _loader.Setup(mock => mock.Load(1)).Returns(project);
-      _dateTimeService.Setup(mock => mock.GetUtcNow()).Returns(DateTime.UtcNow.AddDays(1));
+      _dateTimeService.Setup(mock => mock.GetUtcNow()).Returns(new DateTime(2020, 1, 2));
       var timeRegistration = new TimeRegistrationModel();
 
       var result = _service.Execute(1, timeRegistration);
