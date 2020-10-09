@@ -97,7 +97,7 @@ namespace Timelogger.Api
 
       var testProject2 = new Entities.Project
       {
-        ProjectId = 1,
+        ProjectId = 2,
         Name = "Least Favorite Client",
         Deadline = DateTime.UtcNow.AddDays(1),
         User = testUser
