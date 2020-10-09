@@ -29,7 +29,8 @@ namespace Timelogger.Api.Tests
       var result = _service.Execute(1, timeRegistration);
 
       result.Should().BeTrue();
-      _saver.Verify(mock => mock.Save(project, timeRegistration));
+      _loader.Verify(mock => mock.Load(1), Times.Once);
+      _saver.Verify(mock => mock.Save(project, timeRegistration), Times.Once);
     }
 
     [Test]
@@ -41,6 +42,7 @@ namespace Timelogger.Api.Tests
       var result = _service.Execute(1, timeRegistration);
 
       result.Should().BeFalse();
+      _loader.Verify(mock => mock.Load(1), Times.Once);
       _saver.Verify(mock => mock.Save(null, timeRegistration), Times.Never);
     }
   }
