@@ -1,5 +1,6 @@
 import React from 'react';
 import { getDateAsString } from '../helpers/dateHelper';
+import { convertMinutesToHoursAsString } from '../helpers/numberFormatHelper';
 import ProjectViewModel from '../models/projectViewModel';
 
 function getRedirectLinkTo(projectId: number) {
@@ -23,7 +24,7 @@ export default function ProjectsTable(props: { projects: ProjectViewModel[]; }) 
 					<tr key={index}>
 						<td className="border px-4 py-2 w-12">{index + 1}</td>
 						<td className="border px-4 py-2">{project.name}</td>
-						<td className="border px-4 py-2">{project.timeLogged}</td>
+						<td className="border px-4 py-2">{convertMinutesToHoursAsString(project.timeLogged)}</td>
 						<td className="border px-4 py-2">{getDateAsString(project.deadline)}</td>
 						<td className="border px-4 py-2">
 							<a href={getRedirectLinkTo(project.id)}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { convertMinutesToHoursAsString } from '../helpers/numberFormatHelper';
 import { TimeRegistrationViewModel } from '../models/timeRegistrationViewModel';
 
 function getTotalHoursFrom(timeRegistrations: TimeRegistrationViewModel[]): number {
@@ -15,7 +16,7 @@ export default function ProjectSummary(props: { timeRegistrations: TimeRegistrat
   return (
     <>
       <div className="container mx-auto">
-        <p className="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline">Total Time Logged: {getTotalHoursFrom(props.timeRegistrations)} h</p>
+        <p className="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline">Total Time Logged: {convertMinutesToHoursAsString(getTotalHoursFrom(props.timeRegistrations))} h</p>
       </div>
     </>
   );
