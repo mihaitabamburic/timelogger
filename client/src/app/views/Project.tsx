@@ -23,7 +23,7 @@ export default class Project extends Component<RouteComponentProps<{ projectId: 
   }
 
   private handleResponse(response: TimeRegistrationViewModel[]): void {
-    if (response && response.length !== 0) {
+    if (response) {
       this.setState({ timeRegistrations: response, dataLoaded: true });
     }
   }
@@ -43,7 +43,7 @@ export default class Project extends Component<RouteComponentProps<{ projectId: 
 
     if (this.state.addEntryRequested) {
       return (
-        <Redirect to={`/project/${Number(this.props.match.params.projectId)}/timeregistration/`} />
+        <Redirect to={`/projects/${Number(this.props.match.params.projectId)}/timeregistration/`} />
       );
     }
 

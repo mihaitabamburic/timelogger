@@ -1,27 +1,39 @@
+using System;
+
 namespace Timelogger.Api
 {
   public class TimeRegistrationSaveBusinessService : ITimeRegistrationSaveBusinessService
   {
-    private readonly IProjectLoader loader;
-    private readonly ITimeRegistrationSaver saver;
+    private readonly IProjectLoader projectLoader;
+    private readonly ITimeRegistrationSaver timeRegistrationSaver;
+    private readonly IDateTimeService dateTimeService;
 
-    public TimeRegistrationSaveBusinessService(IProjectLoader loader, ITimeRegistrationSaver saver)
+    public TimeRegistrationSaveBusinessService(
+      IProjectLoader projectLoader,
+      ITimeRegistrationSaver timeRegistrationSaver,
+      IDateTimeService dateTimeService)
     {
-      this.loader = loader;
-      this.saver = saver;
+      this.projectLoader = projectLoader;
+      this.timeRegistrationSaver = timeRegistrationSaver;
+      this.dateTimeService = dateTimeService;
     }
 
     public bool Execute(int projectId, TimeRegistrationModel timeRegistrationModel)
     {
-      var project = loader.Load(projectId);
+      var project = projectLoader.Load(projectId);
 
-      if (project != null)
+      if (CanBeSaved(project))
       {
-        saver.Save(project, timeRegistrationModel);
+        timeRegistrationSaver.Save(project, timeRegistrationModel);
         return true;
       }
 
       return false;
+    }
+
+    private bool CanBeSaved(Entities.Project project)
+    {
+      return project != null && project.Deadline > dateTimeService.GetUtcNow();
     }
   }
 }
