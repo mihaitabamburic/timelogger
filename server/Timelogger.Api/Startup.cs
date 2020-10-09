@@ -87,16 +87,25 @@ namespace Timelogger.Api
         Name = "The OG Freelancer"
       };
 
-      var testProject = new Entities.Project
+      var testProject1 = new Entities.Project
       {
         ProjectId = 1,
-        Name = "e-conomic Interview",
+        Name = "Favorite Client",
+        Deadline = DateTime.UtcNow.AddDays(1),
+        User = testUser
+      };
+
+      var testProject2 = new Entities.Project
+      {
+        ProjectId = 1,
+        Name = "Least Favorite Client",
         Deadline = DateTime.UtcNow.AddDays(1),
         User = testUser
       };
 
       context.Users.Add(testUser);
-      context.Projects.Add(testProject);
+      context.Projects.Add(testProject1);
+      context.Projects.Add(testProject2);
 
       context.SaveChanges();
     }
