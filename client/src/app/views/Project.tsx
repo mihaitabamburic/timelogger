@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import { getAll } from '../api/timeRegistrations';
-import TimeRegistrationsPerProjectTable from '../components/TimeRegistrationsPerProjectTable';
 import { TimeRegistrationViewModel } from '../models/timeRegistrationViewModel';
+import { getAll } from '../api/timeRegistrations';
+import ProjectSummary from '../components/ProjectSummary';
+import TimeRegistrationsPerProjectTable from '../components/TimeRegistrationsPerProjectTable';
 
-export default class TimeRegistrationsPerProject extends Component<RouteComponentProps<{ projectId: string; }>, {
+export default class Project extends Component<RouteComponentProps<{ projectId: string; }>, {
   timeRegistrations: TimeRegistrationViewModel[];
   dataLoaded: Boolean;
   addEntryRequested: Boolean;
@@ -31,6 +32,10 @@ export default class TimeRegistrationsPerProject extends Component<RouteComponen
     this.setState({ addEntryRequested: true });
   };
 
+  getTotalTimeLoggedInHours() {
+    return 1;
+  }
+
   render() {
     if (!this.state.dataLoaded) {
       return null;
@@ -50,6 +55,8 @@ export default class TimeRegistrationsPerProject extends Component<RouteComponen
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={this.handleAddingNewEntry}>Add entry</button>
             </div>
           </div>
+
+          <ProjectSummary timeRegistrations={this.state.timeRegistrations} />
 
           <TimeRegistrationsPerProjectTable timeRegistrations={this.state.timeRegistrations} />
         </div>

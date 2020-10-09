@@ -32,7 +32,7 @@ export default class AddTimeRegistration extends Component<RouteComponentProps<{
   render() {
     if (this.state.saveSuccessful) {
       return (
-        <Redirect to={`/project/${this.props.match.params.projectId}/`} />
+        <Redirect to={`/projects/${this.props.match.params.projectId}/`} />
       );
     }
 
@@ -42,7 +42,7 @@ export default class AddTimeRegistration extends Component<RouteComponentProps<{
 
           <div className="flex items-center my-6">
             <form>
-              <label className="py-2 px-4" htmlFor="newTimeRegistrationInput">Time worked </label>
+              <label className="py-2 px-4" htmlFor="newTimeRegistrationInput">Time worked (minutes)</label>
               <input className="border py-2 px-4" type="number" min={MINUTES_WORKED_MIN_VALUE} defaultValue={MINUTES_WORKED_MIN_VALUE} onChange={this.updateTimeLogged} id="newTimeRegistrationInput" required={true} />
 
               <div className="flex justify-end my-6">

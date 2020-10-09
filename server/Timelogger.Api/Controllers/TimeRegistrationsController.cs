@@ -27,9 +27,11 @@ namespace Timelogger.Api
       [FromRoute] int projectId,
       [FromBody] TimeRegistrationModel timeRegistrationModel)
     {
-      timeRegistrationSaver.Save(projectId, timeRegistrationModel);
-
-      return NoContent();
+      if (timeRegistrationSaver.Save(projectId, timeRegistrationModel))
+      {
+        return NoContent();
+      }
+      return BadRequest();
     }
 
     [HttpGet]

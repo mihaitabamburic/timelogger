@@ -53,12 +53,16 @@ export default class Projects extends Component<{}, {
 
 		return (
 			<>
-				<div className="flex items-center my-6">
-					{this.renderAddButtonIfNeeded()}
-					{this.renderSearchButtonIfNeeded()}
-				</div>
+				<main>
+					<div className="container mx-auto">
+						<div className="flex items-center my-6">
+							{this.renderAddButtonIfNeeded()}
+							{this.renderSearchButtonIfNeeded()}
+						</div>
 
-				<ProjectsTable projects={this.state.projects} />
+						<ProjectsTable projects={this.state.projects} />
+					</div>
+				</main>
 			</>
 		);
 	}

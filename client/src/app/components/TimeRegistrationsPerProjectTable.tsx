@@ -16,7 +16,7 @@ export default function TimeRegistrationsPerProjectTable(props: { timeRegistrati
 				{props.timeRegistrations.map((timeRegistration, index) =>
 					<tr key={index}>
 						<td className="border px-4 py-2 w-12">{index + 1}</td>
-						<td className="border px-4 py-2">{timeRegistration.timeLogged}</td>
+						<td className="border px-4 py-2">{timeRegistration.timeLogged} m</td>
 						<td className="border px-4 py-2">{getDateAsString(timeRegistration.createdAt)}</td>
 					</tr>)}
 			</tbody>

@@ -8,7 +8,7 @@ export default function ProjectsTable(props: { projects: ProjectViewModel[]; }) 
 			<thead className="bg-gray-200">
 				<tr>
 					<th className="border px-4 py-2 w-12">#</th>
-					<th className="border px-4 py-2 ">Project Name</th>
+					<th className="border px-4 py-2">Project Name</th>
 					<th className="border px-4 py-2">Time Logged</th>
 					<th className="border px-4 py-2">Deadline</th>
 				</tr>
