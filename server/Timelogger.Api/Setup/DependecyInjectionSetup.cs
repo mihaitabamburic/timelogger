@@ -15,6 +15,7 @@ namespace Timelogger.Api
       service.AddScoped(typeof(ITimeRegistrationSaver), typeof(TimeRegistrationSaver));
       service.AddScoped(typeof(IProjectLoader), typeof(ProjectLoader));
       service.AddScoped(typeof(ITimeRegistrationSaveBusinessService), typeof(TimeRegistrationSaveBusinessService));
+      service.AddScoped(typeof(IDateTimeService), typeof(DateTimeService));
     }
   }
 }
