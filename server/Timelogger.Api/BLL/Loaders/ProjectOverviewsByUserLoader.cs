@@ -23,9 +23,9 @@ namespace Timelogger.Api
 
       foreach (var project in projects)
       {
-        var timeLogged = context.TimeRegistrations
+        var timeLogged = (double)context.TimeRegistrations
         .Where(tr => tr.Project.ProjectId == project.ProjectId)
-        .Sum(tr => tr.TimeLogged);
+        .Sum(tr => tr.TimeLogged) / (double)60;
 
         projectOverviews.Add(new ProjectOverviewModel
         {
