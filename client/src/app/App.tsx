@@ -23,6 +23,7 @@ export default function App() {
                     <Route exact={true} path="/project/:projectId/timeregistration/" component={AddTimeRegistration} />
                     <Route exact={true} path="/project/:projectId/" component={TimeRegistrationsPerProject} />
                     <Route exact={true} path="/" component={Home} />
+                    <Route path="*" component={Home} />
                 </Switch>
             </div>
         </Router>

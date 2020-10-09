@@ -1,3 +1,4 @@
+using System;
 using Timelogger.Entities;
 
 namespace Timelogger.Api
@@ -18,6 +19,7 @@ namespace Timelogger.Api
       var timeRegistration = new TimeRegistration
       {
         TimeLogged = timeRegistrationModel.MinutesWorked,
+        CreatedAt = DateTime.UtcNow,
         Project = project
       };
 
