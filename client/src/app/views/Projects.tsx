@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { getAll } from '../api/projects';
 import ProjectsTable from '../components/ProjectsTable';
+import { sortProjects } from '../helpers/projectSortHelper';
 import ProjectViewModel from '../models/projectViewModel';
 
 export default class Projects extends Component<{}, {
 	projects: ProjectViewModel[];
+	sortAscending: Boolean;
 	dataLoaded: Boolean;
 	enableAdd: Boolean;
 	enableSearch: Boolean;
 }> {
 	constructor(props: Readonly<{}>) {
 		super(props);
-		this.state = { projects: [], dataLoaded: false, enableSearch: false, enableAdd: false };
+		this.state = { projects: [], sortAscending: true, dataLoaded: false, enableSearch: false, enableAdd: false };
 	}
 
 	async componentDidMount() {
@@ -20,6 +22,13 @@ export default class Projects extends Component<{}, {
 			this.setState({ projects, dataLoaded: true });
 		}
 	}
+
+	sortByDeadline = () => {
+		debugger;
+		const sortAscending = this.state.sortAscending;
+		const projects = sortProjects(this.state.projects, this.state.sortAscending);
+		this.setState({ projects, sortAscending: !sortAscending });
+	};
 
 	renderAddButtonIfNeeded() {
 		if (this.state.enableAdd) {
@@ -60,7 +69,7 @@ export default class Projects extends Component<{}, {
 							{this.renderSearchButtonIfNeeded()}
 						</div>
 
-						<ProjectsTable projects={this.state.projects} />
+						<ProjectsTable projects={this.state.projects} sortByDeadline={this.sortByDeadline} />
 					</div>
 				</main>
 			</>

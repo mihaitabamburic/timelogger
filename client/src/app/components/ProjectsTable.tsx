@@ -7,7 +7,7 @@ function getRedirectLinkTo(projectId: number) {
 	return `/projects/${projectId}`;
 }
 
-export default function ProjectsTable(props: { projects: ProjectViewModel[]; }) {
+export default function ProjectsTable(props: { projects: ProjectViewModel[]; sortByDeadline: any; }) {
 	return (
 		<table className="table-fixed w-full">
 			<thead className="bg-gray-200">
@@ -15,7 +15,7 @@ export default function ProjectsTable(props: { projects: ProjectViewModel[]; }) 
 					<th className="border px-4 py-2 w-12">#</th>
 					<th className="border px-4 py-2">Project Name</th>
 					<th className="border px-4 py-2">Time Logged</th>
-					<th className="border px-4 py-2">Deadline</th>
+					<th className="border px-4 py-2" onClick={props.sortByDeadline}>Deadline</th>
 					<th className="border px-4 py-2">Actions</th>
 				</tr>
 			</thead>

@@ -91,7 +91,7 @@ namespace Timelogger.Api
       {
         ProjectId = 1,
         Name = "Favorite Client",
-        Deadline = DateTime.UtcNow.AddDays(1),
+        Deadline = DateTime.UtcNow.AddDays(2),
         User = testUser
       };
 
